@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Pedro Alexon - Fisioterapeuta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c7873;
+            --primary-dark: #215e59;
+            --primary-light: #3a9a92;
+            --secondary: #ff7e5f;
+            --dark: #333;
+            --light: #f8f9fa;
+            --gray: #e9ecef;
+            --text: #444;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .logo span {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 120, 115, 0.85), rgba(33, 94, 89, 0.9)), url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .section-title p {
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Especialidades */
+        .especialidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .especialidade-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .especialidade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .especialidade-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .especialidade-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Sobre */
+        .sobre-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .sobre-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .sobre-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .sobre-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .sobre-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .sobre-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Agendamento */
+        .agendamento {
+            background: var(--gray);
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: var(--radius);
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .form-agendamento .campo {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-agendamento label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-agendamento input, 
+        .form-agendamento select, 
+        .form-agendamento textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: var(--radius);
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+        
+        .form-agendamento input:focus, 
+        .form-agendamento select:focus, 
+        .form-agendamento textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(44, 120, 115, 0.2);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        /* Botões */
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #1ebe5d;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #ff6b4a;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem 1.5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+        
+        .footer-col p, .footer-col a {
+            color: #bbb;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .sobre-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .sobre-img {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 3rem 1rem;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-user-md"></i>
+                <div>
+                    <h1>Dr. Pedro Alexon</h1>
+                    <span>Fisioterapeuta</span>
+                </div>
+            </div>
+            
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#especialidades">Especialidades</a></li>
+                    <li><a href="#agendamento">Agendamento</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h2>Cuidando da sua saúde com excelência</h2>
+            <p>Especialista em reabilitação, cinesiologia e tratamento da dor. Agende sua consulta e recupere sua qualidade de vida.</p>
+            <button class="btn-whatsapp" onclick="window.open('https://wa.me/558591437478', '_blank')">
+                <i class="fab fa-whatsapp"></i> Agendar pelo WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre o Dr. Pedro Alexon</h2>
+                <p>Conheça o profissional dedicado à sua recuperação e bem-estar</p>
+            </div>
+            
+            <div class="sobre-content">
+                <div class="sobre-img">
+                    <img src="predologo.png" alt="Dr. Pedro Alexon">
+                </div>
+                
+                <div class="sobre-text">
+                    <h3>Profissionalismo e Dedicação</h3>
+                    <p>Dr. Pedro Alexon é um fisioterapeuta especializado com vasta experiência no tratamento de condições musculoesqueléticas e na reabilitação funcional.</p>
+                    <p>Com formação sólida e constante atualização, oferece tratamentos personalizados baseados nas mais recentes evidências científicas para garantir os melhores resultados aos seus pacientes.</p>
+                    <p>Seu compromisso é proporcionar um atendimento humanizado, com foco na recuperação completa e no retorno às atividades diárias com qualidade de vida.</p>
+                    <button onclick="document.getElementById('agendamento').scrollIntoView({behavior: 'smooth'})">
+                        <i class="fas fa-calendar-check"></i> Agendar Consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Especialidades -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-title">
+                <h2>Especialidades</h2>
+                <p>Áreas de atuação e tratamentos especializados</p>
+            </div>
+            
+            <div class="especialidades-grid">
+                <div class="especialidade-card">
+                    <i class="fas fa-bone"></i>
+                    <h3>Reabilitação</h3>
+                    <p>Recuperação funcional pós-cirúrgica, pós-traumática e para condições crônicas, com protocolos personalizados para cada caso.</p>
+                </div>
+                
+                <div class="especialidade-card">
+                    <i class="fas fa-running"></i>
+                    <h3>Cinesiologia</h3>
+                    <p>Análise do movimento humano para identificar desequilíbrios musculares e desenvolver programas de exercícios corretivos.</p>
+                </div>
+                
+                <div class="especialidade-card">
+                    <i class="fas fa-pain"></i>
+                    <h3>Tratamento da Dor</h3>
+                    <p>Avaliação e tratamento de dores musculoesqueléticas agudas e crônicas com técnicas manuais e recursos físicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agendamento -->
+    <section class="agendamento" id="agendamento">
+        <div class="container">
+            <div class="section-title">
+                <h2>Agende sua Consulta</h2>
+                <p>Preencha o formulário abaixo e entraremos em contato para confirmar seu agendamento</p>
+            </div>
+            
+            <div class="form-container">
+                <form class="form-agendamento" id="formAgendamento">
+                    <div class="form-row">
+                        <div class="campo">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="campo">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="campo">
+                            <label for="data">Data Preferencial</label>
+                            <input type="date" id="data" name="data" required>
+                        </div>
+                    </div>
+                    
+                    <div class="campo">
+                        <label for="horario">Horário Preferencial</label>
+                        <select id="horario" name="horario" required>
+                            <option value="">Selecione um horário</option>
+                            <option value="08:00">08:00</option>
+                            <option value="09:00">09:00</option>
+                            <option value="10:00">10:00</option>
+                            <option value="11:00">11:00</option>
+                            <option value="14:00">14:00</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                    
+                    <div class="campo">
+                        <label for="motivo">Motivo da Consulta</label>
+                        <textarea id="motivo" name="motivo" rows="4" placeholder="Descreva brevemente o motivo da sua consulta..."></textarea>
+                    </div>
+                    
+                    <button type="submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Agendamento
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Dr. Pedro Alexon</h3>
+                <p>Fisioterapeuta especializado em reabilitação, cinesiologia e tratamento da dor.</p>
+                <p>Comprometido com a saúde e bem-estar dos pacientes.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p><i class="fas fa-phone"></i> +55 85 9143-7478</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp</p>
+                <p><i class="fas fa-envelope"></i> contato@pedroalexon.com</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Redes Sociais</h3>
+                <p>Siga-nos nas redes sociais</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/pedroalexonfisio" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/558591437478" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Dr. Pedro Alexon - Fisioterapeuta. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav').classList.toggle('active');
+        });
+        
+        // Form submission
+        document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Coletar dados do formulário
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const data = document.getElementById('data').value;
+            const horario = document.getElementById('horario').value;
+            const motivo = document.getElementById('motivo').value;
+            
+            // Formatar mensagem para WhatsApp
+            const mensagem = `Olá Dr. Pedro Alexon! Gostaria de agendar uma consulta:\n\nNome: ${nome}\nTelefone: ${telefone}\nData: ${data}\nHorário: ${horario}\nMotivo: ${motivo}`;
+            
+            // Codificar mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+            
+            // Abrir WhatsApp
+            window.open(`https://wa.me/558591437478?text=${mensagemCodificada}`, '_blank');
+            
+            // Resetar formulário
+            document.getElementById('formAgendamento').reset();
+            
+            // Feedback para o usuário
+            alert('Agora você será redirecionado para o WhatsApp para confirmar seu agendamento!');
+        });
+        
+        // Data mínima para agendamento (hoje)
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('data').min = today;
+    </script>
+</body>
+</html>
